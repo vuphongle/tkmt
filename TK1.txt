@@ -1,0 +1,45 @@
+.read_csv('')
+.head() : in vài dòng
+.sample(10, random_state = 99): ngẫu nhiên
+.shape : dòng, cột
+df[''].value_counts(): đếm số lượng
+.drop([''], axis= 1) xóa cột||xóa dòng
+df[''].nunique(): đếm khác nhau
+.index.tolist(): xuất danh sách
+
+plt.figure(figsize=(10, 6))
+top_10_names_2014.plot(kind='bar', color='skyblue')
+plt.title('Top 10 tên xuất hiện nhiều nhất năm 2014')
+plt.xlabel('Tên')
+plt.ylabel('Số lần xuất hiện')
+plt.xticks(rotation=45)
+plt.show()
+
+
+
+# Đọc dữ liệu từ file CSV vào DataFrame
+df = pd.read_csv('US_BaBy_Names.csv')
+
+# Lọc dữ liệu cho các năm từ 2004 đến 2014
+df_years = df[(df['Year'] >= 2004) & (df['Year'] <= 2014)]
+
+# Tính tỷ lệ nam chia cho nữ cho mỗi năm
+c = df_years.groupby('Year')['Gender'].value_counts(normalize=True).unstack()
+male_to_female_ratio = gender_ratios['M'] / gender_ratios['F']
+# print(c)
+# Vẽ đồ thị đường cho tỷ lệ nam chia cho nữ qua các năm
+plt.figure(figsize=(10, 6))
+male_to_female_ratio.plot(kind='line', marker='o', color='green')
+plt.title('Tỷ lệ nam/nữ qua các năm (2004-2014)')
+plt.xlabel('Năm')
+plt.ylabel('Tỷ lệ nam/nữ')
+plt.xticks(df_years['Year'].unique())
+plt.grid(True)
+plt.show()
+
+.dropna() 
+df[[]].mean : tb .median(): trung vị
+
+mpg_quartiles = df['mpg'].quantile([0.25, 0.75])
+mpg_iqr = mpg_quartiles[0.75] - mpg_quartiles[0.25]
+print("Miền phân vị (IQR) của 'mpg':", mpg_iqr)
